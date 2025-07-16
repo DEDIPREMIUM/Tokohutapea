@@ -1,256 +1,178 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Shopee Clone</title>
-
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com "></script>
-
-  <!-- React & Babel -->
-  <script crossorigin src="https://unpkg.com/react @18/umd/react.development.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom @18/umd/react-dom.development.js"></script>
-  <script crossorigin src="https://unpkg.com/ @babel/standalone/babel.min.js"></script>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CyberVPN - VPN Cyberpunk Premium</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
   <style>
-    /* Optional: Tambahkan sedikit animasi */
-    .hover\:scale-105:hover {
-      transform: scale(1.05);
+    body {
+      background: linear-gradient(135deg, #0f0f1a, #1a0f3a);
+      color: #c0c0ff;
+      font-family: 'Share Tech Mono', monospace;
     }
-    .transition {
+    h1, h2, h3 {
+      font-family: 'Orbitron', sans-serif;
+      text-shadow: 0 0 8px #ff00de, 0 0 20px #ff00de;
+    }
+    .btn-cyber {
+      background: linear-gradient(90deg, #ff00de, #00fff7);
+      color: #000;
+      font-weight: 700;
+      padding: 0.75rem 2rem;
+      border-radius: 9999px;
+      box-shadow: 0 0 10px #ff00de, 0 0 20px #00fff7;
       transition: all 0.3s ease;
+      user-select: none;
     }
-    .line-clamp-2 {
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
+    .btn-cyber:hover {
+      background: linear-gradient(90deg, #00fff7, #ff00de);
+      color: #fff;
+      box-shadow: 0 0 20px #00fff7, 0 0 30px #ff00de;
+      cursor: pointer;
+    }
+    nav a {
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #ff00de;
+      text-decoration: underline;
+    }
+    .card {
+      background: rgba(30, 0, 50, 0.8);
+      border: 1px solid #ff00de;
+      border-radius: 12px;
+      box-shadow: 0 0 15px #ff00de;
+      padding: 1.5rem;
+      transition: transform 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 25px #00fff7, 0 0 40px #ff00de;
+    }
+    details summary {
+      cursor: pointer;
+      font-weight: 700;
+      padding: 0.5rem;
+      border-radius: 8px;
+      background: #2a0040;
+      box-shadow: 0 0 8px #ff00de;
+      user-select: none;
+    }
+    details[open] summary {
+      background: #ff00de;
+      color: #000;
+      box-shadow: 0 0 15px #00fff7;
+    }
+    input, textarea {
+      background: #1a0030;
+      border: 1px solid #ff00de;
+      border-radius: 8px;
+      padding: 0.5rem;
+      color: #c0c0ff;
+      font-family: 'Share Tech Mono', monospace;
+      transition: border-color 0.3s ease;
+    }
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #00fff7;
+      box-shadow: 0 0 8px #00fff7;
+    }
+    footer {
+      font-size: 0.875rem;
+      color: #7a4a9d;
+      text-align: center;
+      padding: 1rem 0;
+      border-top: 1px solid #440066;
+      user-select: none;
     }
   </style>
 </head>
-<body class="bg-gray-100">
+<body class="flex flex-col min-h-screen">
 
-  <!-- Tempat React akan merender aplikasi -->
-  <div id="root"></div>
+  <header class="flex justify-between items-center p-6 border-b border-purple-700 sticky top-0 bg-gradient-to-b from-[#1a0030]/90 to-transparent z-50">
+    <h1 class="text-4xl font-bold text-neon">CyberVPN</h1>
+    <nav class="space-x-8 text-lg font-semibold">
+      <a href="#products">Produk</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Kontak</a>
+    </nav>
+  </header>
 
-  <!-- Script React dalam format JSX -->
-  <script type="text/babel">
+  <main class="flex-grow container mx-auto px-6 py-12 max-w-6xl">
+    <section class="text-center mb-16">
+      <h2 class="text-5xl mb-4" style="text-shadow: 0 0 15px #ff00de, 0 0 30px #00fff7;">VPN Cyberpunk Premium</h2>
+      <p class="text-xl max-w-3xl mx-auto text-[#d0b0ff]">Keamanan dan privasi tingkat tinggi dengan desain futuristik. Nikmati internet tanpa batas dengan kecepatan ultra cepat dan enkripsi AES-256.</p>
+    </section>
 
-    const { useState } = React;
-
-    function App() {
-      const [cart, setCart] = useState([]);
-      const [searchTerm, setSearchTerm] = useState("");
-      const [selectedCategory, setSelectedCategory] = useState("All");
-      const [activeProduct, setActiveProduct] = useState(null);
-
-      const categories = ["All", "Elektronik", "Fashion", "Makanan", "Buku"];
-      
-      const products = [
-        {
-          id: 1,
-          name: "Smartphone Canggih",
-          price: 2999000,
-          category: "Elektronik",
-          image: "https://placehold.co/300x300?text=Smartphone",
-          description: "Ponsel pintar dengan kamera ultra HD dan performa tinggi.",
-        },
-        {
-          id: 2,
-          name: "Baju Keren",
-          price: 150000,
-          category: "Fashion",
-          image: " https://placehold.co/300x300?text=Baju",
-          description: "T-shirt nyaman dengan desain modern dan gaya trendi.",
-        },
-        {
-          id: 3,
-          name: "Coklat Lezat",
-          price: 45000,
-          category: "Makanan",
-          image: " https://placehold.co/300x300?text=Coklat",
-          description: "Permen coklat premium dengan rasa manis dan lembut.",
-        },
-        {
-          id: 4,
-          name: "Novel Terlaris",
-          price: 120000,
-          category: "Buku",
-          image: " https://placehold.co/300x300?text=Buku",
-          description: "Koleksi novel populer yang wajib dibaca oleh semua orang.",
-        },
-        {
-          id: 5,
-          name: "Laptop Gaming",
-          price: 12000000,
-          category: "Elektronik",
-          image: " https://placehold.co/300x300?text=Laptop",
-          description: "Laptop bertenaga tinggi untuk kebutuhan gaming dan editing.",
-        },
-        {
-          id: 6,
-          name: "Celana Jeans",
-          price: 250000,
-          category: "Fashion",
-          image: " https://placehold.co/300x300?text=Celana",
-          description: "Celana jeans berkualitas tinggi dengan desain stylish.",
-        },
-      ];
-
-      const filteredProducts = products.filter(
-        (product) =>
-          (selectedCategory === "All" || product.category === selectedCategory) &&
-          product.name.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-
-      const addToCart = (product) => {
-        setCart((prevCart) => [...prevCart, product]);
-        alert(`${product.name} telah ditambahkan ke keranjang!`);
-      };
-
-      const viewProductDetail = (product) => {
-        setActiveProduct(product);
-      };
-
-      const goBackToProducts = () => {
-        setActiveProduct(null);
-      };
-
-      return (
-        <div className="min-h-screen bg-gray-100">
-          {/* Header */}
-          <header className="bg-white shadow-md">
-            <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-              <h1 className="text-2xl font-bold text-blue-600">Shopify</h1>
-              <div className="flex items-center space-x-4">
-                <input
-                  type="text"
-                  placeholder="Cari produk..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                />
-                <button className="relative">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 003 3h2.25a3 3 0 003-3M3.75 9h16.5m-16.5 6.75h16.5" />
-                  </svg>
-                  <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">
-                    {cart.length}
-                  </span>
-                </button>
-              </div>
-            </div>
-          </header>
-
-          <main className="container mx-auto px-4 py-6">
-            {!activeProduct ? (
-              <>
-                {/* Kategori */}
-                <div className="flex overflow-x-auto mb-6 space-x-4 pb-2">
-                  {categories.map((category) => (
-                    <button
-                      key={category}
-                      onClick={() => setSelectedCategory(category)}
-                      className={`px-4 py-2 rounded-full whitespace-nowrap ${
-                        selectedCategory === category
-                          ? "bg-blue-600 text-white"
-                          : "bg-gray-200 text-gray-800 hover:bg-gray-300"
-                      }`}
-                    >
-                      {category}
-                    </button>
-                  ))}
-                </div>
-
-                {/* Daftar Produk */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                  {filteredProducts.map((product) => (
-                    <div
-                      key={product.id}
-                      className="bg-white rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105"
-                    >
-                      <img
-                        src={product.image}
-                        alt={product.name}
-                        className="w-full h-48 object-cover"
-                      />
-                      <div className="p-4">
-                        <h3 className="font-semibold text-lg">{product.name}</h3>
-                        <p className="text-gray-600">Rp{product.price.toLocaleString()}</p>
-                        <p className="text-sm text-gray-500 mt-1 line-clamp-2">
-                          {product.description}
-                        </p>
-                        <div className="mt-4 flex space-x-2">
-                          <button
-                            onClick={() => addToCart(product)}
-                            className="flex-1 bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
-                          >
-                            Beli
-                          </button>
-                          <button
-                            onClick={() => viewProductDetail(product)}
-                            className="bg-gray-200 text-gray-800 py-2 px-3 rounded hover:bg-gray-300 transition"
-                          >
-                            Detail
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </>
-            ) : (
-              <div className="bg-white rounded-lg shadow-md p-6 max-w-3xl mx-auto">
-                <button
-                  onClick={goBackToProducts}
-                  className="text-blue-600 mb-4 flex items-center"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 mr-1">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-                  </svg>
-                  Kembali
-                </button>
-                <div className="flex flex-col md:flex-row">
-                  <div className="md:w-1/2">
-                    <img
-                      src={activeProduct.image}
-                      alt={activeProduct.name}
-                      className="w-full h-auto rounded"
-                    />
-                  </div>
-                  <div className="md:w-1/2 md:pl-6 mt-4 md:mt-0">
-                    <h2 className="text-2xl font-bold">{activeProduct.name}</h2>
-                    <p className="text-xl text-blue-600 mt-2">
-                      Rp{activeProduct.price.toLocaleString()}
-                    </p>
-                    <p className="text-gray-700 mt-4">{activeProduct.description}</p>
-                    <div className="mt-6">
-                      <button
-                        onClick={() => addToCart(activeProduct)}
-                        className="w-full bg-blue-600 text-white py-3 rounded hover:bg-blue-700 transition"
-                      >
-                        Tambahkan ke Keranjang
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-          </main>
-
-          <footer className="bg-white shadow-inner mt-12">
-            <div className="container mx-auto px-4 py-6 text-center text-gray-600">
-              &copy; 2025 Shopify Clone. Dibuat dengan ❤️ untuk pembelajaran.
-            </div>
-          </footer>
+    <section id="products" class="mb-20">
+      <h2 class="text-3xl mb-8 text-center" style="text-shadow: 0 0 10px #ff00de;">Paket VPN Kami</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div class="card">
+          <h3 class="text-2xl mb-3">Cyber Basic</h3>
+          <ul class="mb-4 list-disc list-inside space-y-1 text-[#d0b0ff]">
+            <li>Akses server global</li>
+            <li>Kecepatan stabil</li>
+            <li>Enkripsi AES-256</li>
+          </ul>
+          <p class="text-2xl font-bold mb-6">Rp50.000 / bulan</p>
+          <button class="btn-cyber w-full" onclick="alert('Fitur pemesanan segera hadir!')">Pesan Sekarang</button>
         </div>
-      );
-    }
+        <div class="card">
+          <h3 class="text-2xl mb-3">Cyber Pro</h3>
+          <ul class="mb-4 list-disc list-inside space-y-1 text-[#d0b0ff]">
+            <li>Semua fitur Basic</li>
+            <li>Multi-hop VPN</li>
+            <li>Kill Switch</li>
+            <li>No-log policy</li>
+          </ul>
+          <p class="text-2xl font-bold mb-6">Rp100.000 / bulan</p>
+          <button class="btn-cyber w-full" onclick="alert('Fitur pemesanan segera hadir!')">Pesan Sekarang</button>
+        </div>
+        <div class="card">
+          <h3 class="text-2xl mb-3">Cyber Elite</h3>
+          <ul class="mb-4 list-disc list-inside space-y-1 text-[#d0b0ff]">
+            <li>Semua fitur Pro</li>
+            <li>Dedicated IP</li>
+            <li>Prioritas Support</li>
+          </ul>
+          <p class="text-2xl font-bold mb-6">Rp200.000 / bulan</p>
+          <button class="btn-cyber w-full" onclick="alert('Fitur pemesanan segera hadir!')">Pesan Sekarang</button>
+        </div>
+      </div>
+    </section>
 
-    // Render Aplikasi
-    const root = ReactDOM.createRoot(document.getElementById('root'));
-    root.render(<App />);
-  </script>
+    <section id="faq" class="mb-20 max-w-3xl mx-auto">
+      <h2 class="text-3xl mb-8 text-center" style="text-shadow: 0 0 10px #ff00de;">Pertanyaan Umum</h2>
+      <details class="mb-4" open>
+        <summary>Apa itu CyberVPN?</summary>
+        <p class="mt-2 text-[#d0b0ff]">CyberVPN adalah layanan VPN premium dengan teknologi enkripsi terbaru dan jaringan server global untuk menjaga privasi Anda.</p>
+      </details>
+      <details class="mb-4">
+        <summary>Apakah data saya aman?</summary>
+        <p class="mt-2 text-[#d0b0ff]">Ya, kami menggunakan enkripsi AES-256 dan kebijakan tanpa pencatatan aktivitas pengguna.</p>
+      </details>
+      <details class="mb-4">
+        <summary>Bagaimana cara berlangganan?</summary>
+        <p class="mt-2 text-[#d0b0ff]">Klik tombol "Pesan Sekarang" pada paket yang Anda pilih dan ikuti instruksi yang akan kami kirimkan.</p>
+      </details>
+    </section>
+
+    <section id="contact" class="max-w-lg mx-auto">
+      <h2 class="text-3xl mb-8 text-center" style="text-shadow: 0 0 10px #ff00de;">Hubungi Kami</h2>
+      <form action="https://formspree.io/f/yourformid" method="POST" class="flex flex-col gap-6">
+        <input type="text" name="name" placeholder="Nama Anda" required />
+        <input type="email" name="_replyto" placeholder="Email Anda" required />
+        <textarea name="message" rows="5" placeholder="Pesan Anda" required></textarea>
+        <button type="submit" class="btn-cyber">Kirim Pesan</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 CyberVPN. All rights reserved.
+  </footer>
+
 </body>
 </html>
